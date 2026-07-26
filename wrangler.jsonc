@@ -1,7 +1,7 @@
 {
   "compatibility_date": "2026-05-27",
   "compatibility_flags": ["global_fetch_strictly_public", "nodejs_compat", "assets_navigation_has_no_effect"],
-  "name": "stardrive",
+  "name": "blogdevsier",
   "main": "@astrojs/cloudflare/entrypoints/server",
   "assets": {
     "directory": "./dist",
