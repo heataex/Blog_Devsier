@@ -1,102 +1,101 @@
 import type { ThemeConfig } from './types/theme-config.d.ts';
 
-// language files from ./src/i18n
-// The `with { type: 'json' }` import attribute is required so this file can also be
-// imported from a plain ESM context (e.g. `ec.config.mjs`, which Node loads directly).
+// 1. Import file tiếng Việt vừa tạo
+import viStrings from './src/i18n/vi.json' with { type: 'json' };
 import enStrings from './src/i18n/en.json' with { type: 'json' };
 import deStrings from './src/i18n/de.json' with { type: 'json' };
 import frStrings from './src/i18n/fr.json' with { type: 'json' };
 import esStrings from './src/i18n/es.json' with { type: 'json' };
 
 export const themeConfig: ThemeConfig = {
-  // `import.meta.env?.` is guarded because this file is also imported from `ec.config.mjs`,
-  // which Node loads as plain ESM where `import.meta.env` is not defined (only Vite injects it).
-  site: import.meta.env?.SITE_OVERRIDE || 'https://astro-stardrive.com',
-  primaryColor: '#f26430', // mind to also update the Tailwind config if you change this!
+  site: import.meta.env?.SITE_OVERRIDE || 'https://devsier.com', // Thay domain blog của bạn
+  primaryColor: '#f26430', 
   themeColor: '#50168a',
   generateWebmanifest: true,
-  name: 'Astro Stardrive',
-  shortName: 'Stardrive',
+  
+  // 2. Tên thương hiệu blog
+  name: 'Devsier Blog',
+  shortName: 'Devsier',
   darkMode: true,
   robots: import.meta.env?.ROBOTS || 'index, follow',
-  xHandle: 'example',
+  xHandle: 'devsier',
 
-  // Structured data
+  // 3. Thông tin Tác giả & Nhà xuất bản
   author: {
     type: 'Person',
-    name: 'John Doe',
-    url: 'https://en.wikipedia.org/wiki/John_Doe',
+    name: 'Nguyễn Đình Huy', // Tên của bạn
+    url: 'https://devsier.com/about', 
     image: '',
   },
   publisher: {
     type: 'Organization',
-    name: 'ACME Inc.',
-    url: 'https://en.wikipedia.org/wiki/Acme_Corporation',
+    name: 'Devsier Inc.',
+    url: 'https://devsier.com',
     image: '',
   },
 
-  // I18n
+  // 4. Cấu hình Ngôn ngữ (Chuyển tiếng Việt thành mặc định)
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'de', 'fr', 'es'],
+    defaultLocale: 'vi', // Đổi ngôn ngữ mặc định thành 'vi'
+    locales: ['vi', 'en', 'de', 'fr', 'es'],
     languages: {
+      vi: 'Tiếng Việt',
       en: 'English',
       de: 'Deutsch',
       fr: 'Français',
       es: 'Español',
     },
     languageModules: {
+      vi: viStrings,
       en: enStrings,
       de: deStrings,
       fr: frStrings,
       es: esStrings,
     },
     translatedStructuredData: {
-      de: {
+      vi: {
         author: {
-          name: 'Max Mustermann',
-          url: 'https://de.wikipedia.org/wiki/Mustermann#Max_Mustermann',
+          name: 'Nguyễn Đình Huy',
+          url: 'https://devsier.com/about',
         },
         publisher: {
-          name: 'ACME',
-          url: 'https://de.wikipedia.org/wiki/ACME',
+          name: 'Devsier Inc.',
+          url: 'https://devsier.com',
         },
       },
     },
   },
 
-  // md(x) code block rendering
   expressiveCodeThemes: {
     light: 'min-light',
     dark: 'min-dark',
   },
 
-  // content/article settings
+  // 5. Cấu hình bài viết
   articles: {
     imageFallback: true,
     gridView: true,
     textOverImage: false,
-    categories: true, // if set false, make sure to also remove category directories under /pages
-    tags: true, // if set false, make sure to also remove tag directories under /pages
-    entriesPerPage: 4,
+    categories: true, 
+    tags: true, 
+    entriesPerPage: 6, // Số bài viết hiển thị trên 1 trang
     tocMaxDepth: 3,
     defaults: {
       author: {
-        name: 'Jane Doe',
-        url: 'https://en.wikipedia.org/wiki/Jane_Doe_(disambiguation)',
+        name: 'Nguyễn Đình Huy',
+        url: 'https://devsier.com/about',
       },
     },
     social: {
-      // default values - can be overridden at the Single component level
-      xHandle: 'example', // to be added as "via @handle" in the tweet
+      xHandle: 'devsier',
       buttons: {
         email: true,
         facebook: true,
-        hackernews: true,
+        hackernews: false,
         linkedin: true,
         pinterest: false,
-        reddit: true,
-        telegram: false,
+        reddit: false,
+        telegram: true,
         x: true,
         whatsapp: false,
       },
@@ -106,27 +105,24 @@ export const themeConfig: ThemeConfig = {
         hackernews: false,
         linkedin: true,
         pinterest: false,
-        reddit: true,
+        reddit: false,
         telegram: true,
         x: true,
-        whatsapp: true,
+        whatsapp: false,
       },
     },
   },
 
-  // promotion settings
   promotions: {
     newsletterSignup: 'footer',
     footerBanner: true,
-    navAd: true,
-    topBanner: true,
+    navAd: false,
+    topBanner: false,
     heroChip: true,
   },
 
-  // for the purpose of this demo, we render intergration options on-demand instead of prerendering them.
   onDemandRenderedCollections: ['integration_options'],
 
-  // you can also dynamically integrate events from your Add to Calendar PRO account (https://add-to-calendar-pro.com/), having your API key set as environment variable ADD_TO_CALENDAR_PRO_API_KEY.
   dynamicEvents: {
     pullFromAddToCalendarPro: false,
     filterBy: {
@@ -136,10 +132,10 @@ export const themeConfig: ThemeConfig = {
     },
   },
 
-  // LLM and coding assistant settings
+  // 6. Mô tả dành cho AI / SEO
   llms: {
     autoGeneration: true,
-    intro: 'Stardrive is a boilerplate and template for Astro.js. It is build to be a alsmost all batteries included starting point for all kinds of content driven websites, like blogs, documentation sites, knowledge bases, or even marketing sites. It is also optimized for being used by and with LLMs and coding assistants to create bullet proofed websites automatically.',
+    intro: 'Devsier Blog là nơi chia sẻ kiến thức về lập trình, phát triển web và công nghệ.',
     excludePagesPattern: ['/integration/**'],
     includePages: [],
     addArticles: 'selected',
@@ -147,5 +143,5 @@ export const themeConfig: ThemeConfig = {
     addFAQ: 'all',
   },
 
-  askAiTrigger: 'I am evaluating the Astro Stardrive boilerplate (github.com/peltmonger/stardrive) for my website. Provide a detailed analysis of its features, strengths, and weaknesses. Can you help me using it? How do I get started?',
+  askAiTrigger: 'Tôi muốn tìm hiểu thêm thông tin về Devsier Blog.',
 };
