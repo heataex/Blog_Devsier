@@ -13,7 +13,7 @@ excerpt: "Hướng dẫn toàn diện cách lấy lại Facebook bị hack đổ
 slug: "cach-lay-lai-facebook-bi-hack-doi-email-va-so-dien-thoai-2026"
 
 image:
-url: [https://picsum.photos/1200/630](https://picsum.photos/1200/630)
+url: 
 alt: "Hướng dẫn cách lấy lại Facebook bị hack đổi email và số điện thoại mới nhất"
 
 tags:
